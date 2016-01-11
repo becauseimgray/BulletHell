@@ -5,8 +5,7 @@ window_h = love.graphics.getHeight()
 
 bullet = {}
 count = 0
-
-soundlist = {"assets/sounds/bullet_fire.wav"}
+bullet_sound = "assets/sounds/crystal.ogg"
 
 function bullet.load()
    can_fire = true --If true player can shoot
@@ -45,9 +44,9 @@ function bullet.update(dt)
   end
     if love.keyboard.isDown("z") then --fires
       TEsound.volume("player_fire", 0.5) -- set this lower than 1 for lower volume ... 1 is default
-      --this sound is obnoxious but i'll change it later ;)
-      TEsound.play(soundlist, "player_fire") -- don't forget to tag your sounds kids!
+      --this sound is obnoxious but i'll change it later ;) also don't forget to tag your sounds kids!
       if can_fire then
+        TEsound.play(bullet_sound, "player_fire")
         bullet[#bullet + 1] = { --gives new bullets these vars
             y     = player.y,
             speed = bullet.speed,
