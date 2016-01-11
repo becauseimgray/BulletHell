@@ -5,7 +5,7 @@ window_y = 0
 
 player = {}
 
---this is where we set atributes of the player
+--this is where we set attributes of the player
 function player.load()
 	player.x = 335
 	player.y = 550
