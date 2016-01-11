@@ -18,7 +18,7 @@ function bullet.load()
     bullet.h = 16
     bullet.speed = 500
     bullet_state = true
-    table.insert(bullet, bullet)
+    --table.insert(bullet, bullet)
   end
 end
 
