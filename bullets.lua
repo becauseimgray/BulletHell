@@ -3,6 +3,7 @@ require "player"
 window_h = love.graphics.getHeight()
 
 bullet = {}
+count = 0
 
 function bullet.load()
 
@@ -18,7 +19,6 @@ function bullet.load()
     bullet.h = 16
     bullet.speed = 500
     bullet_state = true
-    --table.insert(bullet, bullet)
   end
 end
 
@@ -34,17 +34,19 @@ function bullet.update(dt)
   for i,v in ipairs(bullet) do
         bullet_state = false
         v.y = v.y - bullet.speed * dt
-          if v.y > window_h then
+          if v.y <= 0 then
             table.remove(bullet, 1)
+            count = count - 1
           end
   end
-    if love.keyboard.isDown("z") then
+    if love.keyboard.isDown("z") then --fires
       if can_fire then
-        bullet[#bullet + 1] = {
+        bullet[#bullet + 1] = { --gives new bullets these vars
             y     = player.y,
             speed = bullet.speed,
             x     = player.x,
          }
+            count = count + 1
             can_fire = false
       end
     end
@@ -54,6 +56,7 @@ function bullet.draw()
   if bullet_state == false then
     for i,v in ipairs(bullet) do
     love.graphics.draw(bullet.img,v.x,v.y)
+    love.graphics.print("Bullet Count" .. count, 10, 10)
     end
   end
 end
