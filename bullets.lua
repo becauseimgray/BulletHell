@@ -13,7 +13,7 @@ function bullet.load()
    fire_tick = 0 --Used to count the seconds
 
   for i=0,5 do
-    bullet.img = love.graphics.newImage("/images/bullet.png")
+    bullet.img = love.graphics.newImage("/images/bullet_shot.png")
     bullet.x = 0
     bullet.y = 0
     bullet.w = 16
