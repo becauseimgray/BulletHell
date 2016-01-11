@@ -1,5 +1,6 @@
 require "player"
 require "bullets"
+require "wavecollision"
 
 function love.load()
 	player.LOAD()
@@ -14,4 +15,5 @@ end
 function love.draw()
 	player.DRAW()
 	bullet.draw()
+	rectangles.draw()
 end
