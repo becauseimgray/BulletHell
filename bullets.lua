@@ -13,12 +13,14 @@ function bullet.load()
 
   for i=0,5 do
     bullet.img = love.graphics.newImage("/images/bullet.png")
-    bullet.x = player.x
-    bullet.y = player.y
+    bullet.x = 0
+    bullet.y = 0
     bullet.w = 16
     bullet.h = 16
     bullet.speed = 500
     bullet_state = true
+    bullet.width = 16
+    bullet.height = 16
   end
 end
 
@@ -44,7 +46,9 @@ function bullet.update(dt)
         bullet[#bullet + 1] = { --gives new bullets these vars
             y     = player.y,
             speed = bullet.speed,
-            x     = player.x,
+            x     = player.x + (player.width / 2)-8, --gets location for bullets
+            w     = bullet.width,
+            h     = bullet.height,
          }
             count = count + 1
             can_fire = false
@@ -55,7 +59,7 @@ end
 function bullet.draw()
   if bullet_state == false then
     for i,v in ipairs(bullet) do
-    love.graphics.draw(bullet.img,v.x,v.y)
+    love.graphics.draw(bullet.img,v.x, v.y)
     love.graphics.print("Bullet Count" .. count, 10, 10)
     end
   end
