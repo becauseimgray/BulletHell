@@ -1,0 +1,22 @@
+Concepts
+
+
+Have layered rectangles
+    if rectangles collide with enemy unit
+            unit fires pre-determined bullet patterns
+    end
+
+    if enemy collides with player bullets
+            enemy puu-chuns(dies) and is removed from table
+    end
+
+    if enemy collides with player
+            player health goes down
+    end
+
+    enemy will continue to move downwards until it goes past screen
+
+    not killing an enemy counts against points, but maybe doesn't take the point counter down
+    oh yeah lets make a point counter
+
+    enemy bullet touches player, player dies

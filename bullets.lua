@@ -1,4 +1,5 @@
 require "player"
+require "TEsound"
 
 window_h = love.graphics.getHeight()
 
@@ -6,7 +7,6 @@ bullet = {}
 count = 0
 
 function bullet.load()
-
    can_fire = true --If true player can shoot
    fire_wait = 0.1 --Delay between shots in seconds
    fire_tick = 0 --Used to count the seconds
@@ -51,7 +51,11 @@ function bullet.update(dt)
             h     = bullet.height,
          }
             count = count + 1
+            TEsound.volume("player_fire", 0.5) -- set this lower than 1 for lower volume ... 1 is default
+            --this sound is obnoxious but i'll change it later ;)
+            TEsound.play("/assets/sounds/bullet_fire.wav", "player_fire") -- don't forget to tag your sounds kids!
             can_fire = false
+            TEsound.cleanup()
       end
     end
 end
