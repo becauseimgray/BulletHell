@@ -15,6 +15,7 @@ function player.load()
 	player.yvel = 0
 	player.friction = .9
 	player.speed = 2000
+	player.speed_slow = player.speed / 2
 	player.img = love.graphics.newImage("images/32x32avatar.png")
 end
 
@@ -67,6 +68,11 @@ function player.move(dt)
 	if love.keyboard.isDown("up") and
 	player.yvel > -player.speed then
 		player.yvel = player.yvel - player.speed * dt
+	end
+	if love.keyboard.isDown("lshift") then
+			player.speed = player.speed_slow
+		else
+			player.speed = 2000 
 	end
 
 end

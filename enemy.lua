@@ -1,5 +1,6 @@
 require "bullets"
 require "wavecollision"
+require "boundingbox"
 
   enemy = {}
 function enemy.load(dt)
@@ -16,8 +17,9 @@ function enemy.load(dt)
   enemy.pause    = false
   enemy.done     = false
   wait_time      = 2 --changing this changes how long this enemy waits for before moving past whatever boundary I've set
-
+  enemy_deathsnd = "assets/sounds/deathsnd.wav"
   initTime       = love.timer.getTime()
+  draw_enemy     = true
 end
 
 function enemy.physics(dt)
@@ -40,19 +42,29 @@ function enemy.physics(dt)
     enemy.x = enemy.x + (enemy.speed * dt)
   end
 
-  if enemy.y > window_h then
-    table.remove(enemy, 1)
+  if enemy.y > window_h or enemy.x > window_w then
+    draw_enemy = false
+    enemy.x = 0
+    enemy.y = 0
   end
 end
 
 
-function enemy.update(dt)
 
+function enemy.update(dt)
     enemy.count = enemy.count + 1
   	enemy.physics(dt)
+
+    --do collisions here
+    -- draw_enemy = false
+    -- TEsound.play(enemy_deathsnd)
+
+    -- TEsound.cleanup()end
 end
 
 function enemy.draw()
+  if draw_enemy then
   love.graphics.draw(enemy.img, enemy.x, enemy.y)
+  end
 end
 return enemy
